@@ -1,0 +1,1143 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="keywords" content="">        
+
+        <title>LDL Kickoff Template :: </title>     
+
+        <link rel="stylesheet" media="screen" href="/css/app.css">
+        <!--[if lt IE 9]>
+           <script src="/scripts/html5shiv.min.js"></script>
+            <script src="/scripts/respond.min.js"></script>
+        <![endif]-->
+    </head>
+<body><!--
+ ######   #######  ##    ## ######## ######## ##    ## ######## 
+##    ## ##     ## ###   ##    ##    ##       ###   ##    ##    
+##       ##     ## ####  ##    ##    ##       ####  ##    ##    
+##       ##     ## ## ## ##    ##    ######   ## ## ##    ##    
+##       ##     ## ##  ####    ##    ##       ##  ####    ##    
+##    ## ##     ## ##   ###    ##    ##       ##   ###    ##    
+ ######   #######  ##    ##    ##    ######## ##    ##    ##    
+-->
+
+<!--
+  FORM CONSTRUCTION BASICS
+  ------------------------
+
+  Our forms need to hit a number of quality measures...
+
+  1.  They need to be semantic - which means care needs to be paid 
+      that they are constructed using correctly formatted HTML 5
+  2.  They need to work in our core browser set - which still includes 
+      Internet Explorer 8 folks (Nov 14)
+  3.  They need to use consistent validation rules - which means we 
+      stick with jQuery Validtate and jQuery validate (unobtrusive) as required by contour.
+  4.  They need to work across any number of different frameworks - as 
+      an absolute minimum they need to work with both Bootstrap 2 AND 3
+  5.  They need to allow for stupid content - we work for Local Govt
+      which means people may give fields RIDICULOUSLY LONG LABELS
+
+  So as to meet all these quality measures a number of stylistic "<div>" elements
+  have been added around the form elements. The heirarchy and class names of these
+  elements are VERY IMPORTANT! Please make sure they are added correctly - they 
+  control the appearance of the form across multiple browsers/devices, so while 
+  an incorrectly formatted form might LOOK right in your browser, it will break elsewhere.
+
+  Please pay attention to the following construction. ALL label/field
+  groups should be formatted like this. 
+
+  <div class="FORM_control-group">
+
+    <div class="FORM_helper alert alert-info"> (optional)
+      <div class="helperContent">
+        TRY to keep helper content down to a minimum - while they
+        WILL "stack", this is not desirable.
+      </div> (/helperContent)
+    </div> (/FORM_helper)
+
+    <label class="FORM_label" for = "inputID"> 
+      label's FOR attribute must match ID of input
+    </label>
+
+    <div class="FORM_controls">
+      <input id="inputID" />
+      <div class="FORM_validationFeedback">
+        validation text
+      </div>
+    </div>
+
+  </div>
+
+  Groups of radio buttons / checkboxes need semantically to be grouped
+  as fieldsets with a legend. Fieldsets are difficult elements to style as they create their own Block formatting context (http://stackoverflow.com/questions/6481944/why-do-fieldsets-clear-floats) so please note the slightly different format for fieldsets and legends...
+
+  <div class="FORM_control-group">
+    <div class="FORM_helper alert alert-info">
+        <div class="helperContent">
+          TRY to keep helper content down to a minimum
+          - while they WILL "stack", this is not desirable.
+        </div>
+    </div>
+    <fieldset>
+      <legend class="FORM_label" for="inputNAME">
+        This forms the "label" for the control group note it refers to the NAME of the radios, not the ID of the individual input elements
+      </legend>
+      <div class="controls FORM_controls">
+        <div class="radioItem">
+          <input type="radio" id="i3value1" name="inputNAME" value="1">
+          <label for="i3value1">Value 1</label>
+        </div>
+        <div class="radioItem">
+          <input type="radio" id="i3value2" name="inputNAME" value="2">
+          <label for="i3value2">This label is stupidly long</label>
+        </div>
+        <div class="radioItem">
+          <input type="radio" id="i3value3" name="inputNAME" value="3">
+          <label for="i3value3">Value 3</label>
+        </div>
+        <div class="FORM_validationFeedback">
+          (optional) validation text here
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+MANDATORY FIELDS
+----------------
+
+Are indicated by placing <span class="mandatory">*</span> WITHIN the LABEL or LEGEND associated with the control/control-group
+
+CONTROL-GROUP ID CONSTRUCTION
+=============================
+
+<input name="useful name" id="F(n)_T(n)_I(n)_[control type](n)">
+
+Depending on the length and/or complexity of the form the following naming convention will help to uniquely identify controls within the form.
+
+MULTI-FORM-PAGES
+----------------
+If There is more than one form on the page, then each control's ID should be prefixed F(n) where n is the position of its parent form on the page.
+
+MULTI-PAGE-FORMS
+----------------
+If a form is split into multiple pages by a wizard, then each control's ID should be prefixed T(n) where n is the tab/page on which it falls.
+
+
+-->
+
+<div id="pageContent" class="container">
+  	<!--
+	 ######  ########  ##     ## ##     ## ########  
+	##    ## ##     ## ##     ## ###   ### ##     ## 
+	##       ##     ## ##     ## #### #### ##     ## 
+	##       ########  ##     ## ## ### ## ########  
+	##       ##   ##   ##     ## ##     ## ##     ## 
+	##    ## ##    ##  ##     ## ##     ## ##     ## 
+	 ######  ##     ##  #######  ##     ## ########  
+	-->
+
+	 <ol class="breadcrumb">
+	 	<li><a href="#">Home</a></li>
+	 	<li><a href="#">Level 1</a></li>
+	 	<li><a href="#">Level 2</a></li>
+	 	<li><a href="#">Level 3</a></li>
+	 	<li class="active">Here</li>
+	 </ol>	
+
+	<!--
+	#########################################################
+	-->  <div class="row">
+    <div id="content" class="span8">
+      <h1>Form Constructor</h1>
+      <p class="lead">This is going to be the starting point for a <strong><em>STANDARDISED</em></strong> form to use across contour, LCC etc.</p>
+      <h2>Horizontal form</h2>
+      <p>Displayed on page with Right hand column</p>
+      <form class="form-horizontal FORM_horizontal">
+
+
+      <div id="rootwizard" class="FORM_wizard">
+        <ul class="nav">
+          <li><a href="#tab1" data-toggle="tab">Step 1</a></li>
+          <li><a href="#tab2" data-toggle="tab">A longer name</a></li>
+          <li><a href="#tab3" data-toggle="tab">Step 3</a></li>
+        </ul>
+
+        <div class="tab-content FORM_tab-page">
+          <div class="tab-pane" id="tab1">
+          <!--
+          ########     ###     ######   ######## 
+          ##     ##   ## ##   ##    ##  ##       
+          ##     ##  ##   ##  ##        ##       
+          ########  ##     ## ##   #### ######   
+          ##        ######### ##    ##  ##       
+          ##        ##     ## ##    ##  ##       
+          ##        ##     ##  ######   ######## 
+          -->
+
+
+              <!--
+               _            _   _               
+              | |          | | | |              
+              | |_ _____  _| |_| |__   _____  __
+              | __/ _ \ \/ / __| '_ \ / _ \ \/ /
+              | ||  __/>  <| |_| |_) | (_) >  < 
+               \__\___/_/\_\\__|_.__/ \___/_/\_\
+
+              author: Dominic Jones
+              date: 27 Nov 2014
+              version: 1.0 
+
+              Naming
+              ------
+              Control-Group id: TB(n) 
+              input id        : F(n)_T(n)_TB(n)_textbox 
+              input classes   : FORM_name
+                              : FORM_email
+                              : FORM_ etc  
+
+              -->
+              <div class="FORM_control-group" id="F1_T1_TB1">
+                <div class="FORM_helper alert alert-info">
+                  <div class="helperContent">
+                    <p>This is a helper box. Helpers aren't going to be required on EVERY label/control pair, so they should be allowed to "overlap" other label/control pairs.</p>             
+                  </div><!--/helperContent-->
+                </div><!--/FORM_helper-->
+                <label class="control-label FORM_label" for="textbox1"><span class="FORM_mandatory">*</span>A standard text field. Labels may well be stupidly long (this is local government after all) and people are VERBOSE</label>
+                <div class="controls FORM_controls">
+                  <input type="text" id="F1_T1_TB1_textbox" name="F1_T1_TB1_textbox" placeholder="standard input"><div class="FORM_validationFeedback"><span>(optional) validation text here</span></div>
+                </div><!--/FORM_controls-->
+              </div><!--/FORM_control-group-->
+
+              <!-- 
+                        _           _   
+                       | |         | |  
+               ___  ___| | ___  ___| |_ 
+              / __|/ _ \ |/ _ \/ __| __|
+              \__ \  __/ |  __/ (__| |_ 
+              |___/\___|_|\___|\___|\__|
+                                        
+              author: Dominic Jones
+              date: 27 Nov 2014
+              version: 1.0 
+
+              Naming
+              ------
+              Control-Group id: F(n)_T(n)_S(n) 
+              input id        : F(n)_T(n)_S(n)_select 
+              input class=    : FORM_select  
+                                        
+              -->
+              <div class="FORM_control-group" id="F1_T1_S1">
+                <label class="control-label FORM_label" for="F1_T1_S1_select">A Drop down (select) list. Labels may well be stupidly long (this is local government after all) and people are VERBOSE</label>         
+                <div class="controls FORM_controls">
+                <select id="F1_T1_S1_select" name="F1_T1_S1_select" class="FORM_select">
+                  <option value="0">Please select--></option>
+                  <optgroup label="Group">
+                    <option value="1">option 1</option>
+                    <option value="2">option 2</option>
+                  </optgroup>
+                  <optgroup label="Group">
+                    <option value="3">option 3</option>
+                    <option value="4">option 4</option>
+                  </optgroup>
+                  <optgroup label="Group">
+                    <option value="5">option 5</option>
+                    <option value="6">option 6</option>
+                  </optgroup>
+                </select>
+                <div class="FORM_validationFeedback"><span>(optional) validation text here</span></div>
+                </div>
+              </div>
+
+              <!-- 
+                    _               _    _               
+                   | |             | |  | |              
+                ___| |__   ___  ___| | _| |__   _____  __
+               / __| '_ \ / _ \/ __| |/ / '_ \ / _ \ \/ /
+              | (__| | | |  __/ (__|   <| |_) | (_) >  < 
+               \___|_| |_|\___|\___|_|\_\_.__/ \___/_/\_\
+
+              author: Dominic Jones
+              date: 28 Nov 2014
+              version: 1.0 
+
+              Naming
+              ------
+
+              Control-Group id: F(n)_T(n)_CB(n) 
+              input id        : F(n)_T(n)_CB(n)_checkbox   
+              input class     : FORM_checkbox
+              -->
+               <div class="FORM_control-group" id="F1_T1_CB1">
+                <label class="control-label FORM_label" for="F1_T1_CB1_checkbox">A checkbox</label>         
+                <div class="controls FORM_controls">
+                  <input id="F1_T1_CB1_checkbox" name="F1_T1_CB1_checkbox" type="checkbox" class="FORM_checkbox">
+                <div class="FORM_validationFeedback"><span>(optional) validation text here</span></div>
+                </div>
+              </div>  
+
+
+              <!--
+                   _       _               _      _             
+                  | |     | |             (_)    | |            
+                __| | __ _| |_ ___   _ __  _  ___| | _____ _ __ 
+               / _` |/ _` | __/ _ \ | '_ \| |/ __| |/ / _ \ '__|
+              | (_| | (_| | ||  __/ | |_) | | (__|   <  __/ |   
+               \__,_|\__,_|\__\___| | .__/|_|\___|_|\_\___|_|   
+                                    | |                         
+                                    |_|   
+
+              author: Dominic Jones
+              date: 28 Nov 2014
+              version: 1.0 
+
+              Naming
+              ------
+              Control-Group id: F(n)_T(n)_DP(n) 
+              input id        : F(n)_T(n)_DP(n)_datePicker   
+              input class     : FORM_datepicker
+              -->
+              <div class="FORM_control-group" id="F1_T1_DP1">
+                <label class="control-label FORM_label" for="F1_T1_DP1_datePicker"><span class="FORM_mandatory">*</span>A date picker</label>         
+                <div class="controls FORM_controls">
+                  <input type="date" class="FORM_datepicker input-small" id="F1_T1_DP1_datePicker" name="F1_T1_DP1_datePicker">
+                <div class="FORM_validationFeedback"><span>(optional) validation text here</span></div>
+                </div>
+              </div>    
+
+
+
+              <!--
+              _   _                        _      _             
+             | | (_)                      (_)    | |            
+             | |_ _ _ __ ___   ___   _ __  _  ___| | _____ _ __ 
+             | __| | '_ ` _ \ / _ \ | '_ \| |/ __| |/ / _ \ '__|
+             | |_| | | | | | |  __/ | |_) | | (__|   <  __/ |   
+              \__|_|_| |_| |_|\___| | .__/|_|\___|_|\_\___|_|   
+                                    | |                         
+                                    |_|                         
+
+              author: Dominic Jones
+              date: 28 Nov 2014
+              version: 1.0 
+
+              Naming
+              ------
+              Control-Group id: F(n)_T(n)_TP(n) 
+              input id        : F(n)_T(n)_TP(n)_timePicker   
+
+              -->
+              <div class="FORM_control-group" id="F1_T1_TP1">
+                <label class="control-label FORM_label" for="F1_T1_TP1_timePicker"><span class="FORM_mandatory">*</span>A time picker</label>         
+                <div class="controls FORM_controls">
+                  <input type="text" class="FORM_timepicker input-small" id="F1_T1_TP1_timePicker" name="F1_T1_TP1_timePicker">
+                <div class="FORM_validationFeedback"><span>(optional) validation text here</span></div>
+                </div>
+              </div>  
+
+
+              <!--
+                    _               _    _                 _ _     _   
+                   | |             | |  | |               | (_)   | |  
+                ___| |__   ___  ___| | _| |__   _____  __ | |_ ___| |_ 
+               / __| '_ \ / _ \/ __| |/ / '_ \ / _ \ \/ / | | / __| __|
+              | (__| | | |  __/ (__|   <| |_) | (_) >  <  | | \__ \ |_ 
+               \___|_| |_|\___|\___|_|\_\_.__/ \___/_/\_\ |_|_|___/\__|
+                                                                       
+
+              author: Dominic Jones
+              date: 28 Nov 2014
+              version: 1.0 
+
+              Naming
+              ------
+              Control-Group id: F(n)_T(n)_CBL(n) 
+              input id        : F(n)_T(n)_CBL(n)_checkbox(n)   
+                                                                       
+              -->     
+              <div class="FORM_control-group" id="F1_T1_CBL1">
+                <div class="FORM_helper alert alert-info">
+                    <div class="helperContent">
+                      <p>This is an overlong helper box.</p>
+                      <p>Overlong helper boxes will overlap other helpers on the same page - this should be avoided if possible, but a "graceful" overlap is allowed, where they will "stack" until their parent control is hovered/focussed.</p>
+                    </div><!--/helperContent-->
+                </div><!--/FORM_helper-->
+                <fieldset>
+                  <legend class="control-label FORM_label"><span class="FORM_mandatory">*</span>Groups of radios / checkboxes can't have labels, they need to be grouped in a fieldset with a legend</legend>
+                  <div class="controls FORM_controls">
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="F1_T1_CBL1_checkbox1" name="checkboxList1" value="1">
+                      <label for="F1_T1_CBL1_checkbox1">Value 1</label>
+                    </div><!--/checkboxItem-->
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="F1_T1_CBL1_checkbox2" name="checkboxList1" value="2">
+                      <label for="F1_T1_CBL1_checkbox2">This label is stupidly long</label>
+                    </div><!--/checkboxItem-->
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="F1_T1_CBL1_checkbox3" name="checkboxList1" value="3">
+                      <label for="F1_T1_CBL1_checkbox3">Value 3</label>
+                    </div><!--/checkboxItem-->
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="F1_T1_CBL1_checkbox4" name="checkboxList1" value="4">
+                      <label for="F1_T1_CBL1_checkbox4">Value 4</label>
+                    </div><!--/checkboxItem-->
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="F1_T1_CBL1_checkbox5" name="checkboxList1" value="5">
+                      <label for="F1_T1_CBL1_checkbox5">Value 5</label>
+                    </div><!--/checkboxItem-->
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="F1_T1_CBL1_checkbox6" name="checkboxList1" value="6">
+                      <label for="F1_T1_CBL1_checkbox6">This label is even stupidly longer</label>
+                    </div><!--/checkboxItem-->
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="F1_T1_CBL1_checkbox7" name="checkboxList1" value="7">
+                      <label for="F1_T1_CBL1_checkbox7">Value 7</label>
+                    </div><!--/checkboxItem-->
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="F1_T1_CBL1_checkbox8" name="checkboxList1" value="8">
+                      <label for="F1_T1_CBL1_checkbox8">Value 8</label>
+                    </div><!--/checkboxItem-->
+                    <div class="FORM_validationFeedback"><span>(optional) validation text here</span></div><!--/FORM_validationFeedback-->
+                  </div><!--/FORM_controls-->
+                </fieldset>
+              </div>
+
+
+              <!-- 
+                             _ _         _ _     _   
+                            | (_)       | (_)   | |  
+               _ __ __ _  __| |_  ___   | |_ ___| |_ 
+              | '__/ _` |/ _` | |/ _ \  | | / __| __|
+              | | | (_| | (_| | | (_) | | | \__ \ |_ 
+              |_|  \__,_|\__,_|_|\___/  |_|_|___/\__|
+                                                     
+              author: Dominic Jones
+              date: 1 Dec 2014
+              version: 1.0 
+
+              Naming
+              ------
+              Control-Group id: F(n)_T(n)_RL(n) 
+              input id        : F(n)_T(n)_RL(n)_radio(n)   
+                                                     
+              -->
+              <div class="FORM_control-group" id="F1_T1_RL1">
+                 <div class="FORM_helper alert alert-info">
+                    <div class="helperContent">
+                      <p>This is a helper box. Helpers aren't going to be required on EVERY label/control pair, so they should be allowed to "overlap" other label/control pairs.</p>
+                    </div><!--/helperContent-->
+                  </div><!--/FORM_helper-->
+                <fieldset>
+                  <legend class="control-label FORM_label">Note: this isn't a label, it's a legend for the containing fieldset</legend>
+                  
+                  <div class="controls FORM_controls">
+                   
+                    <div class="radioItem">
+                      <input type="radio" id="F1_T1_RL1_radio1" name="radioList1" value="1">
+                      <label for="F1_T1_RL1_radio1">Value 1</label>
+                    </div><!--/radioItem-->
+                    <div class="radioItem">
+                      <input type="radio" id="F1_T1_RL1_radio2" name="radioList1" value="2">
+                      <label for="F1_T1_RL1_radio2">This label is stupidly long</label>
+                    </div><!--/radioItem-->
+                    <div class="radioItem">
+                      <input type="radio" id="F1_T1_RL1_radio3" name="radioList1" value="3">
+                      <label for="F1_T1_RL1_radio3">Value 3</label>
+                    </div><!--/radioItem-->
+                    <div class="radioItem">
+                      <input type="radio" id="F1_T1_RL1_radio4" name="radioList1" value="4">
+                      <label for="F1_T1_RL1_radio4">Value 4</label>
+                    </div><!--/radioItem-->
+                    <div class="radioItem">
+                      <input type="radio" id="F1_T1_RL1_radio5" name="radioList1" value="5">
+                      <label for="F1_T1_RL1_radio5">Value 5</label>
+                    </div><!--/radioItem-->
+                    <div class="radioItem">
+                      <input type="radio" id="F1_T1_RL1_radio6" name="radioList1" value="6">
+                      <label for="F1_T1_RL1_radio6">This label is even stupidly longer</label>
+                    </div><!--/radioItem-->
+                    <div class="radioItem">
+                      <input type="radio" id="F1_T1_RL1_radio7" name="radioList1" value="7">
+                      <label for="F1_T1_RL1_radio7">Value 7</label>
+                    </div><!--/radioItem-->
+                    <div class="radioItem">
+                      <input type="radio" id="F1_T1_RL1_radio8" name="radioList1" value="8">
+                      <label for="F1_T1_RL1_radio8">Value 8</label>
+                    </div><!--/radioItem-->
+                    <div class="FORM_validationFeedback"><span>(optional) validation text here</span></div><!--/FORM_validationFeedback-->
+                  </div><!--/FORM_controls-->
+                </fieldset>
+              </div>
+
+
+              <!--
+               _            _                       
+              | |          | |                      
+              | |_ _____  _| |_ __ _ _ __ ___  __ _ 
+              | __/ _ \ \/ / __/ _` | '__/ _ \/ _` |
+              | ||  __/>  <| || (_| | | |  __/ (_| |
+               \__\___/_/\_\\__\__,_|_|  \___|\__,_|
+                                                    
+                                                     
+              author: Dominic Jones
+              date: 1 Dec 2014
+              version: 1.0 
+
+              Naming
+              ------
+              Control-Group id: F(n)_T(n)_TA(n) 
+              input id        : F(n)_T(n)_TA(n)
+              input class     : FORM_textarea
+                                                     
+              -->
+              <div class="FORM_control-group" id="F1_T1_TA1">
+                <label class="control-label FORM_label" for="F1_T1_TA1_textarea">A textarea</label>   
+                <div class="controls FORM_controls">
+                  <textarea id="F1_T1_TA1_textarea" name="F1_T1_TA1_textarea" class="FORM_textarea"></textarea>
+                <div class="FORM_validationFeedback"><span>(optional) validation text here</span></div>
+                </div>
+              </div>
+
+
+              <!--
+                __ _ _                    _                 _ 
+               / _(_) |                  | |               | |
+              | |_ _| | ___   _   _ _ __ | | ___   __ _  __| |
+              |  _| | |/ _ \ | | | | '_ \| |/ _ \ / _` |/ _` |
+              | | | | |  __/ | |_| | |_) | | (_) | (_| | (_| |
+              |_| |_|_|\___|  \__,_| .__/|_|\___/ \__,_|\__,_|
+                                   | |                        
+                                   |_|    
+
+                                                     
+              author: Dominic Jones
+              date: 1 Dec 2014
+              version: 1.0 
+
+              Naming
+              ------
+              Control-Group id: F(n)_T(n)_U(n) 
+              input id        : F(n)_T(n)_U(n)
+              input class     : FORM_upload
+
+              -->
+              <div class="FORM_control-group" id="F1_T1_U1">
+                <label class="control-label FORM_label" for="F1_T1_U1_upload">A file uploader</label>         
+                <div class="controls FORM_controls">
+                  <input type="file" id="F1_T1_U1_upload" name="F1_T1_U1_upload" class="FORM_upload">
+                <div class="FORM_validationFeedback"><span>(optional) validation text here</span></div>
+                </div>
+              </div>  
+
+            </div><!--tab1-->  
+            <div class="tab-pane" id="tab2">
+            <!--
+            ########     ###     ######   ######## 
+            ##     ##   ## ##   ##    ##  ##       
+            ##     ##  ##   ##  ##        ##       
+            ########  ##     ## ##   #### ######   
+            ##        ######### ##    ##  ##       
+            ##        ##     ## ##    ##  ##       
+            ##        ##     ##  ######   ######## 
+            -->
+
+
+            <!--
+                                                           _     
+                                                          | |    
+               _ __   __ _ _ __ __ _  __ _ _ __ __ _ _ __ | |__  
+              | '_ \ / _` | '__/ _` |/ _` | '__/ _` | '_ \| '_ \ 
+              | |_) | (_| | | | (_| | (_| | | | (_| | |_) | | | |
+              | .__/ \__,_|_|  \__,_|\__, |_|  \__,_| .__/|_| |_|
+              | |                     __/ |         | |          
+              |_|                    |___/          |_|                                       
+
+                                                    
+                                                     
+              author: Dominic Jones
+              date: 1 Dec 2014
+              version: 1.0 
+
+              Naming
+              ------
+              Control-Group id: F(n)_T(n)_P(n) 
+               
+
+            -->
+              <div class="FORM_control-group" id="F1_T2_P1">
+                <div class="nodeContent">
+                  <p>Big band tailfin geometric pocket square mid-century skinny lapel googie, frutiger brylcreem creative highway atompunk zephyr! Futuristic sassy ring-a-ding bakelite kodachrome geometric space-age atompunk, roadside hostess trolley executive naugahyde hip, modern frutiger dieter rams bourbon creative son of a bitch beatnik naugahyde whiskey.</p>
+                </div>
+              </div>
+
+
+              <!--
+                         _     _                     _             _                
+                        | |   | |                   | |           | |               
+                __ _  __| | __| |_ __ ___  ___ ___  | | ___   ___ | | ___   _ _ __  
+               / _` |/ _` |/ _` | '__/ _ \/ __/ __| | |/ _ \ / _ \| |/ / | | | '_ \ 
+              | (_| | (_| | (_| | | |  __/\__ \__ \ | | (_) | (_) |   <| |_| | |_) |
+               \__,_|\__,_|\__,_|_|  \___||___/___/ |_|\___/ \___/|_|\_\\__,_| .__/ 
+                                                                             | |    
+                                                                             |_| 
+              author: Dominic Jones
+              date: 27 Nov 2014
+              version: 1.0   
+
+              Naming:
+              -------
+
+              Control-group id : F(n)_T(n)_AL(n)
+              input ids/classes: F(n)_T(n)_AL(n)_postcode         .AL_postcode
+                                 F(n)_T(n)_AL(n)_addLookupBtn     .AL_addLookupBtn
+                                 F(n)_T(n)_AL(n)_address (hidden) .AL_address
+                                 F(n)_T(n)_AL(n)_addDropDown      .AL_addDropDown
+                                 F(n)_T(n)_AL(n)_AM_add1          .AL_AM_add1
+                                 F(n)_T(n)_AL(n)_AM_street        .AL_AM_street
+                                 F(n)_T(n)_AL(n)_AM_district      .AL_AM_district
+                                 F(n)_T(n)_AL(n)_AM_city          .AL_AM_city
+                                 F(n)_T(n)_AL(n)_AM_postcode      .AL_AM_postcode
+
+              -->
+              <div class="FORM_control-group FORM_AL" id="F1_P2_AL1">
+
+                <!--  NOTE the lack of a helper. The control must be simple enough to use WITHOUT 
+                      Requiring a helper. If it needs a helper, then it's designed wrong! -->
+
+                <label class="control-label FORM_label" for="F1_P2_AL1_postcode">Address Lookup</label>         
+                <div class="controls FORM_controls">
+                  <input type="text" id="F1_P2_AL1_postcode" placeholder="POSTCODE" class="AL_postcode input-small"><input type="hidden" id="F1_P2_AL1_address" name="F1_P2_AL1_address" class="AL_address">
+                  <a href="#" id="F1_P2_AL1_addLookupBtn" class="AL_addLookupBtn btn btn-primary">Find Address</a>
+                  <div class="AL_manualPrompt">
+                    <small>
+                      <a href="#" class="AL_noPostcode">Enter address Manually</a>
+                    </small>
+                  </div>
+                  <div class="AL_addLookup hidden">
+                    <label for="F1_P2_AL1_addDropDown" class="hidden">Select your address</label>
+                    <select id="F1_P2_AL1_addDropDown" name="F1_P2_AL1_addDropDown" class="AL_addDropDown"><option value="0">Please Select</option></select>
+                  </div>
+                  <div class="FORM_validationFeedback">
+                    <span>(optional) validation text here</span>
+                  </div>
+                  <div class="addManual">
+                  <h4>Please enter your address details</h4>
+                    <label for="F1_P2_AL1_AM_add1">House/Flat No &amp; street</label>
+                    <input type="text" id="F1_P2_AL1_AM_add1" name="F1_P2_AL1_AM_add1" class="AL_AM_add1">
+                    <label for="F1_P2_AL1_AM_street">district</label>
+                    <input type="text" id="F1_P2_AL1_AM_add2" name="F1_P2_AL1_AM_add2" class="AL_AM_street">
+                    <label for="F1_P2_AL1_AM_district">Town/City</label>
+                    <input type="text" id="F1_P2_AL1_AM_district" name="F1_P2_AL1_AM_district" class="AL_AM_district">
+                    <label for="F1_P2_AL1_AM_city">County</label>
+                    <input type="text" id="F1_P2_AL1_AM_city" name="F1_P2_AL1_AM_city" class="AL_AM_city">
+                    <label for="F1_P2_AL1_AM_postcode">Postcode</label><br>
+                    <input type="text" id="F1_P2_AL1_AM_postcode" name="F1_P2_AL1_AM_postcode" class="AL_AM_postcode input-small">
+                  </div>
+                </div>
+              </div>  
+
+              <div class="FORM_control-group FORM_repeater" id="F1_T1_R1">
+              <h3>Repeating Fields</h3>
+              <p>The groups of fields below repeat - the first group in the set cannot be deleted (so it receives a "clear" button instead). Subsequent groups can be deleted. An "Add" button is shown below the last group allowing the addition of more groups.</p>
+              <ol class="FORM_repeater-group">
+
+              <li class="F1_T1_R1_G1">
+
+
+              <!--
+               ######   ########   #######  ##     ## ########  
+              ##    ##  ##     ## ##     ## ##     ## ##     ## 
+              ##        ##     ## ##     ## ##     ## ##     ## 
+              ##   #### ########  ##     ## ##     ## ########  
+              ##    ##  ##   ##   ##     ## ##     ## ##        
+              ##    ##  ##    ##  ##     ## ##     ## ##        
+               ######   ##     ##  #######   #######  ##  
+
+
+              author: Dominic Jones
+              date: 1 Dec 2014
+              version: 1.0                 
+
+              Grouped items share the naming conventions of their parent controls,
+              but an added R(n) group is added in the id convention.
+
+              The control-group is added to a PARENT DIV, within which an ordered list element
+              is used to render out members of the repeater group.
+
+              Each list item within the <ol> is constructed in the same manner as a control-group
+              (but WITHOUT the control-group <div>) a <div class="clearfix FORM_repeaterDivider"></div> 
+              is used as a separator between elements.
+
+
+              Naming:
+              -------
+
+              Control Group id            : F(n)_T(n)_R(n)
+              repeater id (applied to LI) : F(n)_T(n)_R(n)_G(n)
+
+
+              -->
+              <h4>Repeating Field Group</h4>
+              <div class="clearfix FORM_repeaterDivider"></div>
+
+
+              <!--
+               _            _   _               
+              | |          | | | |              
+              | |_ _____  _| |_| |__   _____  __
+              | __/ _ \ \/ / __| '_ \ / _ \ \/ /
+              | ||  __/>  <| |_| |_) | (_) >  < 
+               \__\___/_/\_\\__|_.__/ \___/_/\_\
+               
+                -->
+                <label class="control-label FORM_label" for="F1_P2_R1_TB1"><span class="FORM_mandatory">*</span>Repeating Text Field</label>
+                <div class="controls FORM_controls">
+                  <input type="text" id="F1_P2_R1_TB1" name="F1_P2_R1_TB1" placeholder="standard input" required><div class="FORM_validationFeedback"><span>(optional) validation text here</span></div>
+                </div><!--/FORM_controls-->
+
+                <div class="clearfix FORM_repeaterDivider"></div>
+
+
+                <!--
+               _            _                       
+              | |          | |                      
+              | |_ _____  _| |_ __ _ _ __ ___  __ _ 
+              | __/ _ \ \/ / __/ _` | '__/ _ \/ _` |
+              | ||  __/>  <| || (_| | | |  __/ (_| |
+               \__\___/_/\_\\__\__,_|_|  \___|\__,_|
+                  
+                -->
+                <label class="control-label FORM_label" for="F1_P2_R1_TA1">A textarea</label>         
+                <div class="controls FORM_controls">
+                  <textarea id="F1_P2_R1_TA1" name="F1_P2_R1_TA1"></textarea>
+                <div class="FORM_validationFeedback"><span>(optional) validation text here</span></div>
+                </div>
+
+                <div class="clearfix FORM_repeaterDivider"></div>
+
+
+                <!--
+                   _       _               _      _             
+                  | |     | |             (_)    | |            
+                __| | __ _| |_ ___   _ __  _  ___| | _____ _ __ 
+               / _` |/ _` | __/ _ \ | '_ \| |/ __| |/ / _ \ '__|
+              | (_| | (_| | ||  __/ | |_) | | (__|   <  __/ |   
+               \__,_|\__,_|\__\___| | .__/|_|\___|_|\_\___|_|   
+                                    | |                         
+                                    |_| 
+                -->
+                <label class="control-label FORM_label" for="F1_T1_R1_DP1"><span class="FORM_mandatory">*</span>A date picker</label>         
+                <div class="controls FORM_controls">
+                  <input type="date" class="FORM_datepicker" id="F1_T1_R1_DP1" required>
+                <div class="FORM_validationFeedback"><span>(optional) validation text here</span></div>
+                </div>
+
+                <div class="clearfix FORM_repeaterDivider"></div>
+
+
+                <!--
+                    _               _    _                 _ _     _   
+                   | |             | |  | |               | (_)   | |  
+                ___| |__   ___  ___| | _| |__   _____  __ | |_ ___| |_ 
+               / __| '_ \ / _ \/ __| |/ / '_ \ / _ \ \/ / | | / __| __|
+              | (__| | | |  __/ (__|   <| |_) | (_) >  <  | | \__ \ |_ 
+               \___|_| |_|\___|\___|_|\_\_.__/ \___/_/\_\ |_|_|___/\__|
+                 
+                -->     
+                <fieldset>
+                  <legend class="control-label FORM_label" for="rptCheckboxList1"><span class="FORM_mandatory">*</span>Repeating Checkbox list</legend>
+                  <div class="controls FORM_controls">
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="rptCheckboxList1Value1" name="rptCheckboxList1" value="1">
+                      <label for="rptCheckboxList1Value1">Value 1</label>
+                    </div><!--/checkboxItem-->
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="rptCheckboxList1Value2" name="rptCheckboxList1" value="2">
+                      <label for="rptCheckboxList1Value2">Value 3</label>
+                    </div><!--/checkboxItem-->
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="rptCheckboxList1Value3" name="rptCheckboxList1" value="3">
+                      <label for="rptCheckboxList1Value3">Value 4</label>
+                    </div><!--/checkboxItem-->
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="rptCheckboxList1Value4" name="rptCheckboxList1" value="4">
+                      <label for="rptCheckboxList1Value4">Value 5</label>
+                    </div><!--/checkboxItem-->
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="rptCheckboxList1Value5" name="rptCheckboxList1" value="5">
+                      <label for="rptCheckboxList1Value5">Value 6</label>
+                    </div><!--/checkboxItem-->
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="rptCheckboxList1Value6" name="rptCheckboxList1" value="6">
+                      <label for="rptCheckboxList1Value6">Value 7</label>
+                    </div><!--/checkboxItem-->
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="rptCheckboxList1Value7" name="rptCheckboxList1" value="7">
+                      <label for="rptCheckboxList1Value7">Value 8</label>
+                    </div><!--/checkboxItem-->
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="rptCheckboxList1Value8" name="rptCheckboxList1" value="8">
+                      <label for="rptCheckboxList1Value8">Value 9</label>
+                    </div><!--/checkboxItem-->
+                    <div class="FORM_validationFeedback"><span>(optional) validation text here</span></div><!--/FORM_validationFeedback-->
+                  </div><!--/FORM_controls-->
+                </fieldset>
+
+                <div class="clearfix FORM_repeaterDivider"></div>
+
+
+                <!--
+                        _           _   
+                       | |         | |  
+               ___  ___| | ___  ___| |_ 
+              / __|/ _ \ |/ _ \/ __| __|
+              \__ \  __/ |  __/ (__| |_ 
+              |___/\___|_|\___|\___|\__|
+                -->
+                <label class="control-label FORM_label" for="rptSelect1">select</label>         
+                <div class="controls FORM_controls">
+                <select id="rptSelect1">
+                  <option value="0">Please select--></option>
+                  <optgroup label="Group">
+                    <option value="1">option 1</option>
+                    <option value="2">option 2</option>
+                  </optgroup>
+                  <optgroup label="Group">
+                    <option value="3">option 3</option>
+                    <option value="4">option 4</option>
+                  </optgroup>
+                  <optgroup label="Group">
+                    <option value="5">option 5</option>
+                    <option value="6">option 6</option>
+                  </optgroup>
+                </select>
+                <div class="FORM_validationFeedback"><span>(optional) validation text here</span></div>
+                </div>
+
+                <div class="clearfix FORM_repeaterDivider"></div>
+
+
+                <!--
+                             _ _         _ _     _   
+                            | (_)       | (_)   | |  
+               _ __ __ _  __| |_  ___   | |_ ___| |_ 
+              | '__/ _` |/ _` | |/ _ \  | | / __| __|
+              | | | (_| | (_| | | (_) | | | \__ \ |_ 
+              |_|  \__,_|\__,_|_|\___/  |_|_|___/\__|
+                -->
+                <fieldset>
+                  <legend class="control-label FORM_label" for="rptRadioList1">Radio Group</legend>
+                  
+                  <div class="controls FORM_controls">
+                   
+                    <div class="radioItem">
+                      <input type="radio" id="rptF1_T1_RL1_radio1" name="rptRadioList1" value="1">
+                      <label for="rptF1_T1_RL1_radio1">Value 1</label>
+                    </div><!--/radioItem-->
+                    <div class="radioItem">
+                      <input type="radio" id="rptF1_T1_RL1_radio2" name="rptRadioList1" value="2">
+                      <label for="rptF1_T1_RL1_radio2">Value 2</label>
+                    </div><!--/radioItem-->
+                    <div class="radioItem">
+                      <input type="radio" id="rptF1_T1_RL1_radio3" name="rptRadioList1" value="3">
+                      <label for="rptF1_T1_RL1_radio3">Value 3</label>
+                    </div><!--/radioItem-->
+                    <div class="radioItem">
+                      <input type="radio" id="rptF1_T1_RL1_radio4" name="rptRadioList1" value="4">
+                      <label for="rptF1_T1_RL1_radio4">Value 4</label>
+                    </div><!--/radioItem-->
+                    <div class="FORM_validationFeedback"><span>(optional) validation text here</span></div><!--/FORM_validationFeedback-->
+                  </div><!--/FORM_controls-->
+                </fieldset>
+                <div class="clearfix FORM_repeaterDivider"></div>
+                <div class="FORM_repeaterFooter">  
+                  <a class="btn btn-warning" href="#">clear fields</a>
+                </div>
+              </li>
+              <li>
+
+
+              <!--
+               ######   ########   #######  ##     ## ########  
+              ##    ##  ##     ## ##     ## ##     ## ##     ## 
+              ##        ##     ## ##     ## ##     ## ##     ## 
+              ##   #### ########  ##     ## ##     ## ########  
+              ##    ##  ##   ##   ##     ## ##     ## ##        
+              ##    ##  ##    ##  ##     ## ##     ## ##        
+               ######   ##     ##  #######   #######  ##        
+              -->
+              <h4>Repeating Field Group</h4>
+              <div class="clearfix FORM_repeaterDivider"></div>
+
+
+              <!--
+               _            _   _               
+              | |          | | | |              
+              | |_ _____  _| |_| |__   _____  __
+              | __/ _ \ \/ / __| '_ \ / _ \ \/ /
+              | ||  __/>  <| |_| |_) | (_) >  < 
+               \__\___/_/\_\\__|_.__/ \___/_/\_\
+               
+                -->
+                <label class="control-label FORM_label" for="rptText2"><span class="FORM_mandatory">*</span>Repeating Text Field</label>
+                <div class="controls FORM_controls">
+                  <input type="text" id="rptText2" placeholder="standard input"><div class="FORM_validationFeedback"><span>(optional) validation text here</span></div>
+                </div><!--/FORM_controls-->
+
+                <div class="clearfix FORM_repeaterDivider"></div>
+
+
+                <!--
+               _            _                       
+              | |          | |                      
+              | |_ _____  _| |_ __ _ _ __ ___  __ _ 
+              | __/ _ \ \/ / __/ _` | '__/ _ \/ _` |
+              | ||  __/>  <| || (_| | | |  __/ (_| |
+               \__\___/_/\_\\__\__,_|_|  \___|\__,_|
+                  
+                -->
+                <label class="control-label FORM_label" for="rptTextArea2">A textarea</label>         
+                <div class="controls FORM_controls">
+                  <textarea id="rptTextarea2"></textarea>
+                <div class="FORM_validationFeedback"><span>(optional) validation text here</span></div>
+                </div>
+
+                <div class="clearfix FORM_repeaterDivider"></div>
+
+
+                <!--
+                   _       _               _      _             
+                  | |     | |             (_)    | |            
+                __| | __ _| |_ ___   _ __  _  ___| | _____ _ __ 
+               / _` |/ _` | __/ _ \ | '_ \| |/ __| |/ / _ \ '__|
+              | (_| | (_| | ||  __/ | |_) | | (__|   <  __/ |   
+               \__,_|\__,_|\__\___| | .__/|_|\___|_|\_\___|_|   
+                                    | |                         
+                                    |_| 
+                -->
+                <label class="control-label FORM_label" for="rptDatePicker2"><span class="FORM_mandatory">*</span>A date picker</label>         
+                <div class="controls FORM_controls">
+                  <input type="date" class="FORM_datepicker" id="rptDatePicker2">
+                <div class="FORM_validationFeedback"><span>(optional) validation text here</span></div>
+                </div>
+
+                <div class="clearfix FORM_repeaterDivider"></div>
+
+
+                <!--
+                    _               _    _                 _ _     _   
+                   | |             | |  | |               | (_)   | |  
+                ___| |__   ___  ___| | _| |__   _____  __ | |_ ___| |_ 
+               / __| '_ \ / _ \/ __| |/ / '_ \ / _ \ \/ / | | / __| __|
+              | (__| | | |  __/ (__|   <| |_) | (_) >  <  | | \__ \ |_ 
+               \___|_| |_|\___|\___|_|\_\_.__/ \___/_/\_\ |_|_|___/\__|
+                 
+                -->     
+                <fieldset>
+                  <legend class="control-label FORM_label" for="rptCheckboxList2"><span class="FORM_mandatory">*</span>Repeating Checkbox list</legend>
+                  <div class="controls FORM_controls">
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="rptCheckboxList2Value1" name="rptCheckboxList2" value="1">
+                      <label for="rptCheckboxList2Value1">Value 1</label>
+                    </div><!--/checkboxItem-->
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="rptCheckboxList2Value2" name="rptCheckboxList2" value="2">
+                      <label for="rptCheckboxList2Value2">Value 2</label>
+                    </div><!--/checkboxItem-->
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="rptCheckboxList2Value3" name="rptCheckboxList2" value="3">
+                      <label for="rptCheckboxList2Value3">Value 3</label>
+                    </div><!--/checkboxItem-->
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="rptCheckboxList2Value4" name="rptCheckboxList2" value="4">
+                      <label for="rptCheckboxList2Value4">Value 4</label>
+                    </div><!--/checkboxItem-->
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="rptCheckboxList2Value5" name="rptCheckboxList2" value="5">
+                      <label for="rptCheckboxList2Value5">Value 5</label>
+                    </div><!--/checkboxItem-->
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="rptCheckboxList2Value6" name="rptCheckboxList2" value="6">
+                      <label for="rptCheckboxList2Value6">Value 6</label>
+                    </div><!--/checkboxItem-->
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="rptCheckboxList2Value7" name="rptCheckboxList2" value="7">
+                      <label for="rptCheckboxList2Value7">Value 7</label>
+                    </div><!--/checkboxItem-->
+                    <div class="checkboxItem">
+                      <input type="checkbox" id="rptCheckboxList2Value8" name="rptCheckboxList2" value="8">
+                      <label for="rptCheckboxList2Value8">Value 8</label>
+                    </div><!--/checkboxItem-->
+                    <div class="FORM_validationFeedback"><span>(optional) validation text here</span></div><!--/FORM_validationFeedback-->
+                  </div><!--/FORM_controls-->
+                </fieldset>
+
+                <div class="clearfix FORM_repeaterDivider"></div>
+
+
+                <!--
+                        _           _   
+                       | |         | |  
+               ___  ___| | ___  ___| |_ 
+              / __|/ _ \ |/ _ \/ __| __|
+              \__ \  __/ |  __/ (__| |_ 
+              |___/\___|_|\___|\___|\__|
+
+
+                -->
+                <label class="control-label FORM_label" for="rptSelect2">select</label>         
+                <div class="controls FORM_controls">
+                <select id="rptSelect2">
+                  <option value="0">Please select--></option>
+                  <optgroup label="Group">
+                    <option value="1">option 1</option>
+                    <option value="2">option 2</option>
+                  </optgroup>
+                  <optgroup label="Group">
+                    <option value="3">option 3</option>
+                    <option value="4">option 4</option>
+                  </optgroup>
+                  <optgroup label="Group">
+                    <option value="5">option 5</option>
+                    <option value="6">option 6</option>
+                  </optgroup>
+                </select>
+                <div class="FORM_validationFeedback"><span>(optional) validation text here</span></div>
+                </div>
+
+                <div class="clearfix FORM_repeaterDivider"></div>
+
+
+                <!--
+                             _ _         _ _     _   
+                            | (_)       | (_)   | |  
+               _ __ __ _  __| |_  ___   | |_ ___| |_ 
+              | '__/ _` |/ _` | |/ _ \  | | / __| __|
+              | | | (_| | (_| | | (_) | | | \__ \ |_ 
+              |_|  \__,_|\__,_|_|\___/  |_|_|___/\__|
+
+
+                -->
+                <fieldset>
+                  <legend class="control-label FORM_label" for="rptRadioList2">Radio Group</legend>
+                  
+                  <div class="controls FORM_controls">
+                   
+                    <div class="radioItem">
+                      <input type="radio" id="rptRadioList2Value1" name="rptRadioList2" value="1">
+                      <label for="rptRadioList2Value1">Value 1</label>
+                    </div><!--/radioItem-->
+                    <div class="radioItem">
+                      <input type="radio" id="rptRadioList2Value2" name="rptRadioList2" value="2">
+                      <label for="rptRadioList2Value2">Value 2</label>
+                    </div><!--/radioItem-->
+                    <div class="radioItem">
+                      <input type="radio" id="rptRadioList2Value3" name="rptRadioList2" value="3">
+                      <label for="rptRadioList2Value3">Value 3</label>
+                    </div><!--/radioItem-->
+                    <div class="radioItem">
+                      <input type="radio" id="rptRadioList2Value4" name="rptRadioList2" value="4">
+                      <label for="rptRadioList2Value4">Value 4</label>
+                    </div><!--/radioItem-->
+                    <div class="FORM_validationFeedback"><span>(optional) validation text here</span></div><!--/FORM_validationFeedback-->
+                  </div><!--/FORM_controls-->
+                </fieldset>
+                <div class="clearfix FORM_repeaterDivider"></div>
+                <div class="FORM_repeaterFooter">  
+                  <a class="btn btn-danger" href="#">DELETE</a>
+                </div>
+              </li>
+              </ol>
+              <a class="btn btn-success" href="#">add</a>
+              </div>  
+
+            </div><!--/tab2-->
+            <div class="tab-pane" id="tab3">
+            </div><!--/tab3-->
+            <!--form footer paging-->
+            <ul class="FORM_pager pager wizard">
+              <li class="previous first" style="display:none;"><a href="#">First</a></li>
+              <li class="previous"><a href="#">Previous</a></li>
+              <li class="next last" style="display:none;"><a href="#">Last</a></li>
+              <li class="next"><a href="#">Next</a></li>
+            </ul>  
+          </div><!--tab-content-->
+        </div><!--rootWizard-->
+      </form>
+
+    </div>
+    <div id="rightColumn" class="span4">
+          		<div class="well related">
+			<h2>Related</h2>
+			<p>Related stuff here - maybe links to external sites, maybe a twitter feed -insert some other widgets if required</p>
+			<ul>
+				<li><a href="#">Related Item</a></li>
+				<li><a href="#">Related Item</a></li>
+				<li><a href="#">Related Item</a></li>
+				<li><a href="#">Related Item</a></li>
+				<li><a href="#">Related Item</a></li>
+			</ul>
+		</div>          <h2>Contact Us</h2>
+<ul class="list-group">
+	<li class="list-group-item"><i class="fa fa-envelope-o"></i>&nbsp;<a href="#">Email</a></li>
+	<li class="list-group-item"><i class="fa fa-comment-o"></i>&nbsp;<a href="#">Live Chat</a></li>
+	<li class="list-group-item"><i class="fa fa-phone"></i>&nbsp;<a href="#">Telephone</a></li>
+	<li class="list-group-item"><i class="fa fa-fax"></i>&nbsp;<a href="#">Minicom</a></li>
+</ul>
+          <div class="well">
+<h2>Keep me posted</h2>
+<p>GovDelivery Placeholder</p>
+<form class="form-inline" role="form">
+<div class="form-group">
+    <div class="input-group">
+      	<div class="input-group-addon"><i class="fa fa-envelope-o"></i></div>
+      		<input class="form-control" type="email" placeholder="Email address">
+  			<span class="input-group-btn">
+				<button class="btn btn-default" type="button">
+					submit
+				</button>
+			</span>
+    	</div>
+  	</div>
+</form>
+</div>    </div>
+
+</div>
+<!--
+ #########################################################
+-->
+<!--
+########  #######   #######  ######## ######## ########  
+##       ##     ## ##     ##    ##    ##       ##     ## 
+##       ##     ## ##     ##    ##    ##       ##     ## 
+######   ##     ## ##     ##    ##    ######   ########  
+##       ##     ## ##     ##    ##    ##       ##   ##   
+##       ##     ## ##     ##    ##    ##       ##    ##  
+##        #######   #######     ##    ######## ##     ## 
+-->
+
+<footer class="container-fluid" id="siteFooter">
+	<div class="container" id="footerContent">
+
+	</div>
+</footer>
+		<script src="/scripts/dev/jquery.min.js"></script>
+		<script src="/scripts/dev/bootstrap.min.js"></script>
+		<script src="/scripts/dev/jquery.dotdotdot.js"></script>
+		<script src="/scripts/app.min.js"></script>
+<script type="text/javascript" src="/scripts/forms-min.js"></script>
+
+		<!--[if lt IE 9]>
+			<script src="/scripts/polyfills.min.js"></script>
+		<![endif]-->
+
+<!--
+ #########################################################
+-->
+    </body>
+</html>

@@ -1,0 +1,436 @@
+/* 
+
+FORMS 
+=====
+
+This partial creates the over-riding form css which should (hopefully) integrate
+all our forms (Contour, Bootstrap 2, Bootstrap 3, .Net apps etc)
+
+Basic layout...
+(prefix FORM_)
+
+_______________________________________________________________________________
+| <div.control-group>														  |
+|													|------------------------||
+| label.FORM_label		|--------------------------||<div.helper>			 ||
+|						|<div.controls>			   |||----------------------|||
+|						|<input/select etc>		   |||<div.helperContent>   |||
+|						|--------------------------|||						|||
+|						|<div.validationFeedback>  |||						|||
+|						|__________________________|||						|||
+|___________________________________________________||						|||
+													||______________________||
+													|________________________|
+
+Multi-inputs (radios/checkboxes)
+
+_______________________________________________________________________________
+| <div.control-group>														  |
+||-<fieldset---------------------------------------||------------------------||
+||legend.FORM_label		|-------------------------|||<div.helper>			 ||
+||						|<div.controls>			  ||||----------------------|||
+||  					|<radio/checkbox etc>	  ||||<div.helperContent>   |||
+||  					|-------------------------||||						|||
+||  					|<div.validationFeedback> ||||						|||
+||  					|_________________________||||						|||
+||_________________________________________________|||						|||
+|___________________________________________________||						|||
+													||______________________||
+													|________________________|
+
+
+
+The namespacing will be important :-)
+
+*/
+/* mixins */
+/*variables*/
+@import url(/css/datePicker/classic.css);
+@import url(/css/datePicker/classic.date.css);
+@import url(/css/datePicker/classic.time.css);
+/*ARE YOU USING BOOTSTRAP?
+
+IF NOT, UNCOMMENT THIS LINE */
+@import url(/css/bootstrap-replace.css);
+.FORM_control-group {
+  width: 99%;
+  clear: left;
+  position: relative;
+  margin-bottom: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #f2f2f2; }
+
+.FORM_pager {
+  border-top: 1px solid #f2f2f2;
+  padding-top: 12px;
+  margin-left: 0px !important;
+  min-height: 70px; }
+  .FORM_pager li {
+    list-style: none;
+    margin-top: 15px; }
+  .FORM_pager li a {
+    background: #3498db;
+    color: white;
+    padding: 7px 15px;
+    margin-bottom: 15px; }
+  .FORM_pager li a:hover {
+    background-color: #a0cfee;
+    border-color: #258cd1; }
+  .FORM_pager li.next {
+    float: right;
+    margin-right: 30px; }
+  .FORM_pager li.previous {
+    float: left;
+    margin-left: 30px; }
+  .FORM_pager li.next a {
+    display: block;
+    height: 30px;
+    text-align: center;
+    padding: 12px 10px 2px 20px;
+    position: relative;
+    margin: 0 6px 0 0;
+    border-radius: 10px 0px 0px 10px; }
+  .FORM_pager li.next a:after {
+    content: "";
+    border-top: 22px solid transparent;
+    border-bottom: 22px solid transparent;
+    border-left: 22px solid #3498db;
+    position: absolute;
+    right: -22px;
+    top: 0;
+    z-index: 1; }
+  .FORM_pager li.next a:hover:after {
+    border-left-color: #a0cfee; }
+  .FORM_pager li.previous a:hover:before {
+    border-right-color: #a0cfee; }
+  .FORM_pager li.previous a {
+    display: block;
+    height: 30px;
+    text-align: center;
+    padding: 12px 20px 2px 10px;
+    position: relative;
+    margin: 0 6px 0 0;
+    border-radius: 0px 10px 10px 0px; }
+  .FORM_pager li.previous a:before {
+    content: "";
+    border-top: 22px solid transparent;
+    border-bottom: 22px solid transparent;
+    border-right: 22px solid #3498db;
+    position: absolute;
+    left: -22px;
+    top: 0;
+    z-index: 1; }
+  .FORM_pager li.disabled a {
+    cursor: default;
+    color: #eee;
+    background-color: #ddd; }
+  .FORM_pager li.disabled a:hover {
+    background-color: #ddd; }
+  .FORM_pager li.disabled a:before, .FORM_pager li.disabled a:hover:before {
+    border-right-color: #ddd; }
+  .FORM_pager li.disabled a:after, .FORM_pager li.disabled a:hover:after {
+    border-left-color: #ddd; }
+
+.FORM_label {
+  width: 30% !important;
+  margin-bottom: 12px;
+  font-size: 1em;
+  line-height: 1.2em;
+  border-bottom: 0px;
+  position: relative;
+  display: block; }
+
+.FORM_control-group fieldset {
+  display: table-cell;
+  width: 71%;
+  border: none;
+  padding: 0px; }
+  .FORM_control-group fieldset legend {
+    display: block;
+    width: 42% !important; }
+
+.FORM_controls {
+  width: 38%;
+  /*border:1px solid blue;*/
+  margin-left: 34% !important; }
+  .FORM_controls select,
+  .FORM_controls textarea,
+  .FORM_controls input[type="text"],
+  .FORM_controls input[type="password"],
+  .FORM_controls input[type="datetime"],
+  .FORM_controls input[type="datetime-local"],
+  .FORM_controls input[type="date"],
+  .FORM_controls input[type="month"],
+  .FORM_controls input[type="time"],
+  .FORM_controls input[type="week"],
+  .FORM_controls input[type="number"],
+  .FORM_controls input[type="email"],
+  .FORM_controls input[type="url"],
+  .FORM_controls input[type="search"],
+  .FORM_controls input[type="tel"],
+  .FORM_controls input[type="color"],
+  .FORM_controls .uneditable-input {
+    width: 85%; }
+  .FORM_controls input.input-small {
+    width: 90px;
+    margin-right: 12px; }
+  .FORM_controls div.radioItem,
+  .FORM_controls div.checkboxItem {
+    display: inline-block;
+    min-width: 25%;
+    padding-bottom: 7px; }
+  .FORM_controls input[type="radio"],
+  .FORM_controls input[type="checkbox"] {
+    display: inline-block;
+    margin-left: 20px; }
+  .FORM_controls label {
+    display: inline-block;
+    margin-left: 5px; }
+
+fieldset .FORM_controls {
+  margin-left: 45% !important;
+  width: 55% !important;
+  margin-bottom: 25px; }
+
+.FORM_validationFeedback {
+  margin-top: 5px;
+  color: red;
+  margin-bottom: 25px;
+  width: 97% !important;
+  min-height: 25px; }
+
+.FORM_validationFeedback {
+  display: none; }
+
+.FORM_helper {
+  right: 0px;
+  width: 22% !important;
+  position: absolute;
+  z-index: 10;
+  padding: 12px;
+  height: auto;
+  box-shadow: 0px -15px 10px 10px #fff; }
+
+.FORM_helper .helperContent {
+  overflow: hidden; }
+
+.FORM_helper:before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 6px;
+  width: 0;
+  height: 0;
+  border-top: 9px solid transparent;
+  border-right: 18px solid lightblue;
+  border-bottom: 9px solid transparent; }
+
+.FORM_helperFixedHeight {
+  overflow: hidden; }
+
+.FORM_mandatory {
+  display: block;
+  position: absolute;
+  right: -18px;
+  top: 10px;
+  font-size: 35px;
+  color: red; }
+
+/* REPEATERS */
+.FORM_repeater {
+  border: 1px solid #f2f2f2;
+  border-radius: 10px;
+  padding-bottom: 30px;
+  background: #f9f9f9;
+  margin-top: 25px;
+  position: relative;
+  z-Index: 15;
+  box-shadow: 0px -15px 10px 10px #fff; }
+
+.FORM_repeater h3, .FORM_repeater p {
+  background: #f9f9f9;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto; }
+
+.FORM_repeater a.btn {
+  margin-left: 12px;
+  margin-bottom: 12px; }
+
+.FORM_repeaterDivider {
+  width: 90%;
+  border-top: 1px solid #f2f2f2;
+  margin: 12px auto; }
+
+.FORM_repeater-group {
+  margin: 12px 12px 0px 12px;
+  padding-left: 0px;
+  padding-bottom: 30px; }
+
+.FORM_repeater-group li {
+  list-style: none;
+  border-radius: 10px;
+  background-color: #fefefe;
+  margin-bottom: 12px;
+  border: 1px solid #f0f0f0;
+  padding: 12px 25px; }
+
+.FORM_repeaterFooter {
+  padding-left: 25px;
+  margin-bottom: 12px; }
+
+.FORM_tab-page {
+  overflow: visible; }
+
+.FORM_repeater-add {
+  position: absolute;
+  margin-top: -25px !important;
+  left: 5px; }
+
+input.AL_postcode {
+  text-transform: uppercase !important; }
+
+div.AL_addLookup, div.AL_manualPrompt {
+  margin-top: 12px; }
+
+div.addManual {
+  display: none; }
+
+/*dates*/
+.FORM_controls .picker select {
+  width: auto !important;
+  padding: 2px !important;
+  overflow: visible; }
+
+/*timepicker*/
+ul.picker__list {
+  list-style-type: none !important; }
+
+/* the wiz */
+.FORM_wizard ul.nav {
+  list-style: none;
+  display: inline-table; }
+
+.FORM_wizard ul.nav li {
+  display: inline; }
+
+.FORM_wizard ul.nav li a {
+  display: block;
+  float: left;
+  height: 30px;
+  background: #ddd;
+  text-align: center;
+  padding: 12px 10px 2px 30px;
+  position: relative;
+  margin: 0 6px 0 0;
+  font-size: 16px;
+  text-decoration: none;
+  color: #fff; }
+
+.FORM_wizard ul.nav li a:after {
+  content: "";
+  border-top: 22px solid transparent;
+  border-bottom: 22px solid transparent;
+  border-left: 22px solid #ddd;
+  position: absolute;
+  right: -22px;
+  top: 0;
+  z-index: 1; }
+
+.FORM_wizard ul.nav li.active a {
+  background: #3498db; }
+
+.FORM_wizard ul.nav li.active a:after {
+  border-left: 22px solid #3498db; }
+
+.FORM_wizard ul.nav li a:before {
+  content: "";
+  border-top: 22px solid transparent;
+  border-bottom: 22px solid transparent;
+  border-left: 22px solid white;
+  position: absolute;
+  left: 0;
+  top: 0; }
+
+.FORM_wizard ul.nav li:first-child a {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding-left: 20px; }
+
+.FORM_wizard ul.nav li:first-child a:before {
+  display: none; }
+
+.FORM_wizard ul.nav li:last-child a {
+  padding-right: 20px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px; }
+
+.FORM_wizard ul.nav li:last-child a:after {
+  display: none; }
+
+.FORM_wizard ul.nav li a:hover {
+  background: #a0cfee; }
+
+.FORM_wizard ul.nav li a:hover:after {
+  border-left-color: #a0cfee; }
+
+/*pointy buttons*/
+.FORM_wizard ul.nav li a {
+  display: block;
+  float: left;
+  height: 30px;
+  background: #ddd;
+  text-align: center;
+  padding: 12px 10px 2px 30px;
+  position: relative;
+  margin: 0 6px 0 0;
+  font-size: 16px;
+  text-decoration: none;
+  color: #fff; }
+
+.FORM_wizard ul.nav li a:after {
+  content: "";
+  border-top: 22px solid transparent;
+  border-bottom: 22px solid transparent;
+  border-left: 22px solid #ddd;
+  position: absolute;
+  right: -22px;
+  top: 0;
+  z-index: 1; }
+
+/* Media Queries
+
+smartphone = 375 or less
+
+ */
+@media only screen and (max-width: 405px) {
+  .FORM_control-group {
+    display: relative; }
+
+  .FORM_control-group fieldset {
+    width: 100%; }
+
+  .FORM_label, .FORM_control-group fieldset legend {
+    width: 95% !important;
+    float: none; }
+
+  .FORM_controls, fieldset .FORM_controls {
+    width: 100% !important;
+    clear: left;
+    margin: 0px !important; }
+
+  .FORM_helper {
+    float: none;
+    position: relative;
+    bottom: 0px;
+    width: 98% !important;
+    margin: 0px 0px 7px 0px;
+    border-radius: 0px;
+    box-shadow: none !important;
+    padding: 5px; }
+
+  .FORM_helper p {
+    margin: 0px 0px 5px 0px; }
+
+  .FORM_helper:before {
+    border: 0px !important; } }

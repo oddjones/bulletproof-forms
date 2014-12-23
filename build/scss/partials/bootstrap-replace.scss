@@ -1,0 +1,147 @@
+/*bootstrap substitutions 
+
+These definitions replace standard bootstrap functionality
+if the form is being rendered without bootstrap
+
+*/
+
+@import "bourbon";
+
+/*variables */
+
+$primary: #3498db;
+$success: #dff0d8;
+$danger: #F2DEDE;
+$warning: #fcf8e3;
+$info:#D9EDF7;
+$buttongrey: #ccc;
+$buttongreyBorder:#bbb;
+
+
+.alert-info{background:$info;color:darken($info,50%);border:2px solid darken($info,10%);border-radius: 7px;}
+
+.form-search input, .form-inline input, .form-horizontal input, .form-search textarea, .form-inline textarea, .form-horizontal textarea, .form-search select, .form-inline select, .form-horizontal select, .form-search .help-inline, .form-inline .help-inline, .form-horizontal .help-inline, .form-search .uneditable-input, .form-inline .uneditable-input, .form-horizontal .uneditable-input, .form-search .input-prepend, .form-inline .input-prepend, .form-horizontal .input-prepend, .form-search .input-append, .form-inline .input-append, .form-horizontal .input-append {
+display: inline-block;
+margin-bottom: 0;
+vertical-align: middle;
+}
+
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+background-color: #fff;
+border: 1px solid #ccc;
+-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+-webkit-transition: border linear .2s,box-shadow linear .2s;
+-moz-transition: border linear .2s,box-shadow linear .2s;
+-o-transition: border linear .2s,box-shadow linear .2s;
+transition: border linear .2s,box-shadow linear .2s;
+}
+
+select, 
+textarea, 
+input[type="text"], 
+input[type="password"], 
+input[type="datetime"], 
+input[type="datetime-local"], 
+input[type="date"], 
+input[type="month"], 
+input[type="time"], 
+input[type="week"], 
+input[type="number"], 
+input[type="email"], 
+input[type="url"], 
+input[type="search"], 
+input[type="tel"], 
+input[type="color"], 
+.uneditable-input {
+/*display: inline-block;*/
+height: 20px;
+padding: 4px 6px;
+margin-bottom: 10px;
+font-size: 1em;
+line-height: 20px;
+color: #555;
+vertical-align: middle;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+}
+textarea {min-height:70px;}
+@media (max-width: 979px) and (min-width: 768px)
+{
+input, textarea, .uneditable-input {
+margin-left: 0;
+}
+
+input, textarea, .uneditable-input {
+margin-left: 0;
+}
+
+}
+input, button, select, textarea {
+font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+label, input, button, select, textarea {
+font-size: 1em;
+font-weight: normal;
+line-height: 20px;
+}
+
+button, input {
+line-height: normal;
+}
+
+button, input, select, textarea {
+margin: 0;
+font-size: 100%;
+vertical-align: middle;
+}
+
+.FORM_control-group .FORM_label{float:left;}
+.FORM_control-group select{height:32px;box-shadow: none!important;}
+
+a.btn{
+	border-radius: 4px;
+	background-color: $buttongrey;
+	border:2px solid $buttongreyBorder;
+	padding:7px 20px;
+	color:#fff;
+	display:inline-block;
+}
+a.btn:hover{color:white;}
+a.btn-primary{
+	background-color:$primary;
+	color:white;
+	border: 2px solid;
+	border-color: darken($primary,10%);
+}
+a.btn-primary:hover{
+	background-color:darken($primary,10%);
+	color:white;
+}
+.btn-lg{}
+.success{background-color:$success;}
+.warning{background-color:$warning;}
+.info{background-color:$info;}
+a.btn-success{
+	background:darken($success,30%);
+	border-color: darken($success,40%);
+}
+a.btn-success:hover{background:darken($success,40%);}
+a.btn-danger:hover{background:darken($danger,40%);}
+a.btn-warning:hover{background:darken($warning,50%);}
+a.btn-warning{
+	background:darken($warning,40%);
+	border-color:darken($warning,50%);
+}
+a.btn-danger{
+	background:darken($danger,30%);
+	border-color:darken($danger,40%);
+}
+
+.tab-pane{display:none;}
+.tab-pane.active{display:block!important;}
+
+

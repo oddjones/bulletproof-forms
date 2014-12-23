@@ -1,0 +1,5 @@
+body{background:#222;color:#ddd;}
+div,header,section,footer{background:yellow;color:black;}
+div header,div div,header div, section div, footer div {background:aqua;color:black;}
+div div div,div div header{background:green;color:white;}
+form div,div div div div {background:red;color:white;}
