@@ -88,7 +88,7 @@ button, input, select, textarea {
   height: 32px;
   box-shadow: none !important; }
 
-a.btn {
+a.btn, .btn {
   border-radius: 4px;
   background-color: #ccc;
   border: 2px solid #bbb;
@@ -96,16 +96,16 @@ a.btn {
   color: #fff;
   display: inline-block; }
 
-a.btn:hover {
+a.btn:hover, .btn:hover {
   color: white; }
 
-a.btn-primary {
+a.btn-primary, .btn-primary {
   background-color: #3498db;
   color: white;
   border: 2px solid;
   border-color: #217dbb; }
 
-a.btn-primary:hover {
+a.btn-primary:hover, .btn-primary:hover {
   background-color: #217dbb;
   color: white; }
 
