@@ -1,3 +1,5 @@
 TODO list for what needs to be done...
 
 1.) Write Awesome Code
+
+2.) This is a suggestion which may turn into a 'to do' or may turn into a 'don't do.' Currently the input id's look like this - 'F1_T1_TB1_textbox', but the beginning of the label isn't self explanatory and would make using 'find' function difficult when working with the form (particulary on large forms). I'd suggest a naming convention like 'NameRelevantToFormTypeOrFieldset_NameRelevantToInputLabel.' E.g. input id="contact_phone", input id="contact_email", input id="event_name", input id="event_date".      
