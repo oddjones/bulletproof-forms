@@ -454,6 +454,15 @@ IF NOT, UNCOMMENT THIS LINE */
     display: inline-block;
     margin-left: 5px; }
 
+.FORM_select {
+  margin-left: 34% !important;
+  width: 38%; }
+  .FORM_select .month {
+    margin: 0 12px 10px 0; }
+  .FORM_select .year, .FORM_select .day {
+    width: 90px;
+    margin-right: 12px; }
+
 fieldset .FORM_controls {
   margin-left: 45% !important;
   width: 55% !important;
@@ -681,7 +690,7 @@ smartphone = 375 or less
     width: 95% !important;
     float: none; }
 
-  .FORM_controls, fieldset .FORM_controls {
+  .FORM_controls, fieldset .FORM_controls, .FORM_select {
     width: 100% !important;
     clear: left;
     margin: 0px !important; }
