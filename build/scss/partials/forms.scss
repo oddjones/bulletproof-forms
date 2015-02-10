@@ -191,7 +191,7 @@ IF NOT, UNCOMMENT THIS LINE */
 	.uneditable-input{
 		width:85%;
 	}
-	input.input-small{width:90px;margin-right:12px;}
+	input.input-small {width:90px;margin-right:12px;}
 	div.radioItem,
 	div.checkboxItem{
 		display:inline-block;min-width:25%;padding-bottom:7px;
@@ -205,9 +205,21 @@ IF NOT, UNCOMMENT THIS LINE */
 	{
 		display:inline-block;margin-left:5px;
 	}
+	
 }
 
-
+.FORM_select {
+	margin-left:$labelWidth + 4!important;	
+	width: $controlWidth;
+	.month {
+		margin: 0 12px 10px 0;
+	}
+	.year,.day {
+		width:90px;
+		margin-right:12px;
+	}
+}
+	
 fieldset .FORM_controls{margin-left: 45%!important;width:55%!important;margin-bottom:25px;}
 
 .FORM_validationFeedback{margin-top:5px;color:red;margin-bottom:25px;width:$fieldWidth!important;min-height:25px;}
@@ -361,7 +373,7 @@ smartphone = 375 or less
 .FORM_control-group{display:relative;}
 .FORM_control-group fieldset{width:100%;}
 .FORM_label, .FORM_control-group fieldset legend {width:95%!important;float:none;}
-.FORM_controls, fieldset .FORM_controls{width:100%!important;clear:left;margin:0px!important;}
+.FORM_controls, fieldset .FORM_controls, .FORM_select{width:100%!important;clear:left;margin:0px!important;}
 .FORM_helper {float:none;position:relative;bottom:0px;width:98%!important;margin:0px 0px 7px 0px;border-radius: 0px;box-shadow: none!important;padding:5px;}
 .FORM_helper p{margin:0px 0px 5px 0px;}
 .FORM_helper:before{border:0px!important;}

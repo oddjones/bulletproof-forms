@@ -288,7 +288,7 @@ If a form is split into multiple pages by a wizard, then each control's ID shoul
                   <input type="date" class="FORM_datepicker input-small" id="F1_T1_DP1_datePicker" name="F1_T1_DP1_datePicker">
                 <div class="FORM_validationFeedback"><span>(optional) validation text here</span></div>
                 </div>
-              </div>    
+              </div>   
 
 
 
@@ -318,7 +318,43 @@ If a form is split into multiple pages by a wizard, then each control's ID shoul
                   <input type="text" class="FORM_timepicker input-small" id="F1_T1_TP1_timePicker" name="F1_T1_TP1_timePicker">
                 <div class="FORM_validationFeedback"><span>(optional) validation text here</span></div>
                 </div>
-              </div>  
+              </div>
+              
+               <!--
+               
+              author: Jayne Edwards
+              date: 09 Feb 2015
+              version: 1.0 
+
+              Naming
+              ------
+              Control-Group id: F(n)_T(n)_DOB(n) 
+              input id        : F(n)_T(n)_DOB(n)_DOB   
+              input class     : FORM_dob
+              -->
+              <div class="FORM_control-group" id="F1_T1_DOB1">
+                <label class="control-label FORM_label" for="F1_T1_DP1_DOB">Date of birth</label>         
+                <div class="controls FORM_select">
+                <select id="F1_T1_S1_select" name="F1_T1_S1_select" class="month">
+                  <option value="0">Month</option>
+                  <option value="1">January</option>
+                  <option value="2">February</option>
+                  <option value="3">March</option>
+                  <option value="4">April</option>
+                  <option value="5">May</option>
+                  <option value="6">June</option>
+                  <option value="7">July</option>
+                  <option value="8">August</option>
+                  <option value="9">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+                   <input type="text" class="input-small day" id="dob_day" name="dob_day" placeholder="Day"/>
+                   <input type="text" class="input-small year" id="dob_year" name="dob_year" placeholder="Year"/>
+                </div>
+              </div>     
+  
 
 
               <!--
